@@ -58,6 +58,7 @@ class App extends Component {
                 autoFocus="autoFocus"
                 onChange={evt => this.handleArtChange(evt)}/>
             </form>
+            <h3> Searching for <br/><span className="needle">{this.state.needle}</span></h3>
           </header>
           <section>
             {this

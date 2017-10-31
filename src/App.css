@@ -29,6 +29,9 @@ body{
   margin-top: 1em;
   margin-left:0.25em;
   margin-right:0.25em;
+  background-color: white;
+  height: 7em;
+  align-items: center;
 }
 
 .slow-spin {
@@ -54,10 +57,18 @@ em{
 }
 
 .owf-800{
-  color:yellow;
+  color:#F8F272;
   animation: fa-spin 50s infinite linear;
 }
 
+
+.owf-803, .owf-804{
+  color:darkgrey;
+}
+
+.owf-500{
+  color:dodgerblue;
+}
 
 .temp{
   padding:0.5em;
@@ -72,4 +83,14 @@ em{
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.needle{
+  text-transform: uppercase;
+  font-weight: bold;
+  color:black;
+}
+
+.App-intro h3{
+  color:grey;
 }
