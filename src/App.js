@@ -6,37 +6,26 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 
 import Weather from './Components/weather'
+import api from './Components/music-api'
+
 
 class App extends Component {
 
   constructor() {
     super();
     this.state = {
-      events: [], 
-      mapkey :"arpaxgvgu69s3ryc8bx4apsb"
+      events: []
     };
   }
 
   handleFormSubmit = (evt) => {
     evt.preventDefault();
     console.log("submitted", evt, this.state);
-    fetch(`http://api.jambase.com/artists?name=${this.state.needle}&page=0&api_key=${this.state.mapkey}`)
-      .then(resp => resp.json())
-      .then(json => {
-        console.log("back", json)
-        if (json.Artists.length) {
-          const artistId = json.Artists[0].Id
-          console.log("searching for artist", artistId);
-          return fetch(`http://api.jambase.com/events?artistId=${artistId}&page=0&api_key=${this.state.mapkey}`)
-        }
-      })
-      .then(resp => resp.json())
-      .then(json => {
-        console.log("back again", json)
-        this.setState(() => {
-          return {events: json.Events}
-        })
-      });
+    const callback = (json) => this.setState(() => {
+      return {events: json.Events}
+    })
+    api.getData(this.state.needle, callback);
+
   }
 
   handleArtChange = (evt) => {
@@ -66,15 +55,19 @@ class App extends Component {
             </form>
           </header>
           <section>
-            {this.state.events.map((e, i) => {
-              return (
-                <div className="event" key={i}>
-                  {e.Venue.Name} @ 
-                  <Moment format="M/D/YY">{e.Date}</Moment> 
-                  <Weather latitude={e.Venue.Latitude} longitude={e.Venue.Longitude}/>
-                </div>
-              )
-            })}
+            {this
+              .state
+              .events
+              .map((e, i) => {
+                return (
+                  <div className="event" key={i}>
+                    {e.Venue.Name}
+                    @
+                    <Moment format="M/D/YY">{e.Date}</Moment>
+                    <Weather latitude={e.Venue.Latitude} longitude={e.Venue.Longitude}/>
+                  </div>
+                )
+              })}
           </section>
         </div>
       </div>
