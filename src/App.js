@@ -66,7 +66,7 @@ class App extends Component {
               .map((e, i) => {
                 return (
                   <div className="event" key={i}>
-                    <div>
+                    <div className="details">
                       <div>
                       {e.Venue.Name}
                       </div>
@@ -77,7 +77,7 @@ class App extends Component {
                         <Moment format="MMM Do, YYYY">{e.Date}</Moment>
                       </div>
                     </div>
-                    <div>
+                    <div className="weather">
                       <Weather latitude={e.Venue.Latitude} longitude={e.Venue.Longitude}/>
                     </div>
                   </div>
