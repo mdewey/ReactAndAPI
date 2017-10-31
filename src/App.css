@@ -43,3 +43,33 @@ body{
 .details {
   flex-basis: 66%;
 }
+
+em{
+  font-size: 0.8em;
+}
+
+
+.owf{
+  font-size: 2em;
+}
+
+.owf-800{
+  color:yellow;
+  animation: fa-spin 50s infinite linear;
+}
+
+
+.temp{
+  padding:0.5em;
+}
+
+.weather section{
+  display: flex;
+  flex-direction: column;
+}
+
+.weather section div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
