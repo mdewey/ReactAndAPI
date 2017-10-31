@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "moment": "^2.19.1",
+    "moment-timezone": "^0.5.13",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-moment": "^0.6.5",
     "react-scripts": "1.0.14"
   },
   "scripts": {
