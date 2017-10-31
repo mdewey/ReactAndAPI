@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import Moment from 'react-moment';
@@ -13,7 +12,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      events: []
+      events: [],
+      needle: "phish"
     };
   }
 
@@ -35,12 +35,18 @@ class App extends Component {
     })
   }
 
+  componentDidMount() {
+    this.handleFormSubmit({
+      preventDefault: () => {}
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <h1 className="App-title">Welcome to React & APIs!!!</h1>
+          <i className="fa fa-sun-o slow-spin fa-4x fa-fw logo" aria-hidden="true"></i>
+          <h1 className="App-title">Music And Weather!</h1>
         </header>
         <br/>
         <div className="App-intro">
@@ -61,16 +67,14 @@ class App extends Component {
                 return (
                   <div className="event" key={i}>
                     <div>
-                      <Moment format="MMM">{e.Date}</Moment>
-                      <Moment format="Do">{e.Date}</Moment>
-                      <Moment format="YYYY">{e.Date}</Moment>
-                    </div>
-                    <div>
                       <div>
-                        Venue: {e.Venue.Name}
+                      {e.Venue.Name}
                       </div>
                       <div>
-                        City: {e.Venue.City}, {e.Venue.State}, {e.Venue.StateCode}
+                       {e.Venue.City}, {e.Venue.State}, {e.Venue.StateCode}
+                      </div>
+                      <div>
+                        <Moment format="MMM Do, YYYY">{e.Date}</Moment>
                       </div>
                     </div>
                     <div>

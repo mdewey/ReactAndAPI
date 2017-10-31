@@ -2,27 +2,34 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #1BE7FF;
+  height: 100px;
   padding: 20px;
-  color: white;
 }
 
 .App-title {
   font-size: 1.5em;
+  color:#388659;
 }
 
 .App-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Mine */
+.event{
+  display: flex;
+  margin-top: 1em;
+  margin-left:0.25em;
+  margin-right:0.25em;
+}
+
+.slow-spin {
+  animation: fa-spin 25s infinite linear;
+}
+.logo
+{
+  color:yellow;
 }
