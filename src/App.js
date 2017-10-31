@@ -5,27 +5,29 @@ import './App.css';
 import Moment from 'react-moment';
 import 'moment-timezone';
 
+import Weather from './Components/weather'
+
 class App extends Component {
 
   constructor() {
     super();
     this.state = {
-      events: [],
-      musicAPIKey: ""
+      events: [], 
+      mapkey :"arpaxgvgu69s3ryc8bx4apsb"
     };
   }
 
   handleFormSubmit = (evt) => {
     evt.preventDefault();
     console.log("submitted", evt, this.state);
-    fetch(`http://api.jambase.com/artists?name=${this.state.needle}&page=0&api_key=mzrnmarv3wp68ch8wr553bac`)
+    fetch(`http://api.jambase.com/artists?name=${this.state.needle}&page=0&api_key=${this.state.mapkey}`)
       .then(resp => resp.json())
       .then(json => {
         console.log("back", json)
         if (json.Artists.length) {
           const artistId = json.Artists[0].Id
           console.log("searching for artist", artistId);
-          return fetch(`http://api.jambase.com/events?artistId=${artistId}&page=0&api_key=mzrnmarv3wp68ch8wr553bac`)
+          return fetch(`http://api.jambase.com/events?artistId=${artistId}&page=0&api_key=${this.state.mapkey}`)
         }
       })
       .then(resp => resp.json())
@@ -68,8 +70,8 @@ class App extends Component {
               return (
                 <div className="event" key={i}>
                   {e.Venue.Name} @ 
-                  <Moment format="M/D/YY">{e.Date}</Moment>
-                  
+                  <Moment format="M/D/YY">{e.Date}</Moment> 
+                  <Weather latitude={e.Venue.Latitude} longitude={e.Venue.Longitude}/>
                 </div>
               )
             })}

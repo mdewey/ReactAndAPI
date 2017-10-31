@@ -1,1 +1,48 @@
-asdf
+import React from 'react';
+
+class Weather extends React.Component {
+
+    constructor(props) {
+        super(props);
+        console.log(['weather', 'ctor', props])
+        
+        this.state = {
+            location:{
+                lat:props.latitude,
+                lng: props.longitude
+            }
+        };
+    };
+
+    componentDidMount = () => {
+        console.log(['weather', 'mount', this.state])
+        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${this.state.location.lat}&lon=${this.state.location.lng}&appid=3061809775bb7491bd85e0a46e15e0d1`)
+        .then(resp => resp.json())
+        .then(json => {
+            console.log("got the weather", json)
+            this.setState(() => {
+                return {
+                    weather:json
+                }
+            })
+        })
+    }
+
+    render() {
+        console.log(['weather', 'render', this.state])
+        if (this.state.weather) {
+            return (
+                <div>
+                   Current Weather:
+                   {this.state.weather.weather[0].main}
+                    </div>
+            )
+        } else {
+            return <div className="col-md-6">
+                loading...
+            </div>
+        }
+    }
+} // end of render
+
+export default Weather
