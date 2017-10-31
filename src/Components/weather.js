@@ -16,7 +16,7 @@ class Weather extends React.Component {
 
     componentDidMount = () => {
         console.log(['weather', 'mount', this.state])
-        fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${this.state.location.lat}&lon=${this.state.location.lng}&appid=3061809775bb7491bd85e0a46e15e0d1`)
+        fetch(`http://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${this.state.location.lat}&lon=${this.state.location.lng}&appid=3061809775bb7491bd85e0a46e15e0d1`)
         .then(resp => resp.json())
         .then(json => {
             console.log("got the weather", json)
