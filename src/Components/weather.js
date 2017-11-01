@@ -14,8 +14,30 @@ class Weather extends React.Component {
         };
     };
 
+    componentWillReceiveProps = (nextProps) =>{
+        console.log(['weather', 'new props', nextProps])
+        const lat = nextProps.latitude;
+        const lon = nextProps.longitude;
+        fetch(`http://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${lat}&lon=${lon}&appid=3061809775bb7491bd85e0a46e15e0d1`)
+        .then(resp => resp.json())
+        .then(json => {
+            console.log("got the weather", json)
+            this.setState(() => {
+                return {weather: json}
+            })
+        })
+        // this.setState(() => {
+        //     return {
+        //         location:{
+        //             lat:,
+        //             lng:
+        //         }
+        //     }
+        // })
+    }
+
     componentDidMount = () => {
-        console.log(['weather', 'mount', this.state])
+        console.log(['weather', 'mount', this.state.location])
         fetch(`http://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${this.state.location.lat}&lon=${this.state.location.lng}&appid=3061809775bb7491bd85e0a46e15e0d1`)
             .then(resp => resp.json())
             .then(json => {

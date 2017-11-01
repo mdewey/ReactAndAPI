@@ -37,9 +37,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.handleFormSubmit({
-      preventDefault: () => {}
-    })
+    
   }
 
   render() {
@@ -72,6 +70,7 @@ class App extends Component {
 
                 const daysApart = a.diff(b, "days");
                 console.log("days apart", daysApart);
+                console.log("rendering item", e)
                 return (
                   <div className="event" key={i}>
                     <div className="details">
@@ -82,13 +81,11 @@ class App extends Component {
                        {e.Venue.City}, {e.Venue.State}, {e.Venue.StateCode}
                       </div>
                       <div>
-                        <Moment format="MMM Do, YYYY">{e.Date}</Moment>
-                        <br/>
                         <em> Happening in {daysApart} days</em>
                       </div>
                     </div>
                     <div className="weather">
-                      <Weather date={e.Date} happeningIn={daysApart} latitude={e.Venue.Latitude} longitude={e.Venue.Longitude}/>
+                      <Weather date={e.Date} latitude={e.Venue.Latitude} longitude={e.Venue.Longitude}/>
                     </div>
                   </div>
                 )
