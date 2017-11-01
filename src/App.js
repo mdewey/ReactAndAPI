@@ -19,11 +19,18 @@ class App extends Component {
 
   handleFormSubmit = (evt) => {
     evt.preventDefault();
-    console.log("submitted", evt, this.state);
+    console.log("submitted", evt, this.state, this.state.needle);
     const callback = (json) => this.setState((p) => {
       return {events: json.Events, currentNeedle:p.needle}
     })
-    api.getData(this.state.needle, callback);
+    if (this.state.needle){
+      api.getData(this.state.needle, callback);
+    } else {
+      this.setState(() => {
+        return {events:[], currentNeedle:'...'}
+      })
+    }
+      
 
   }
 
