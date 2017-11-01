@@ -35,7 +35,6 @@ class App extends Component {
   }
 
   handleArtChange = (evt) => {
-    console.log("text changed!", evt.target.value, this.state);
     var needle = evt.target.value;
     this.setState(() => {
       return {needle}
@@ -74,8 +73,6 @@ class App extends Component {
                 const b = moment();
 
                 const daysApart = a.diff(b, "days");
-                console.log("days apart", daysApart);
-                console.log("rendering item", e)
                 return (
                   <div className="event" key={i}>
                     <div className="details">
