@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 
 import moment from 'moment';
-import Moment from 'react-moment';
 import 'moment-timezone';
 
 import Weather from './Components/weather'
@@ -14,15 +13,15 @@ class App extends Component {
     super();
     this.state = {
       events: [],
-      needle: "phish"
+      currentNeedle:"..."
     };
   }
 
   handleFormSubmit = (evt) => {
     evt.preventDefault();
     console.log("submitted", evt, this.state);
-    const callback = (json) => this.setState(() => {
-      return {events: json.Events}
+    const callback = (json) => this.setState((p) => {
+      return {events: json.Events, currentNeedle:p.needle}
     })
     api.getData(this.state.needle, callback);
 
@@ -57,13 +56,12 @@ class App extends Component {
                 autoFocus="autoFocus"
                 onChange={evt => this.handleArtChange(evt)}/>
             </form>
-            <h3> Searching for <br/><span className="needle">{this.state.needle}</span></h3>
+            <h3> Searching for <br/><span className="needle">{this.state.currentNeedle}</span></h3>
           </header>
           <section>
             {this
               .state
               .events
-              .slice(0,1)
               .map((e, i) => {
                 const a = moment(e.Date);
                 const b = moment();
