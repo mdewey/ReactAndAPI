@@ -58,6 +58,7 @@ class App extends Component {
             {this
               .state
               .events
+              .slice(0,10)
               .map((e, i) => {
                 const a = moment(e.Date);
                 const b = moment();
