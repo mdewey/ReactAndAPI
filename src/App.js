@@ -25,24 +25,14 @@ class App extends Component {
     })
     if (this.state.needle){
       api.getData(this.state.needle, callback);
-    } else {
-      this.setState(() => {
-        return {events:[], currentNeedle:'...'}
-      })
     }
-      
-
   }
 
   handleArtChange = (evt) => {
     var needle = evt.target.value;
     this.setState(() => {
-      return {needle}
+      return {needle, events:[], currentNeedle:"..."}
     })
-  }
-
-  componentDidMount() {
-    
   }
 
   render() {
